@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // joins user and post on id's
+    public function posts() {
+        // this refers to the called post object
+        // hasMany refers to one-to-many relationship, i.e., each user has many posts
+        // class, FK, PK
+        return $this->hasMany(Post::class, "user_id", "id");
+    }
 }
