@@ -28,7 +28,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="{{asset("js/app.js")}}"></script>
+    <script defer src="{{asset("js/app.js")}}"></script>
   </head>
   <body>
 
@@ -42,22 +42,23 @@
           </span>
         </a>
         <span>
-            <a href="/blog/pages/auth/signup.php" class="signup">SignUp</a>
-            <a href="/blog/pages/auth/login.php" class="login">Login</a>
+            <button id="create-post">Create Post</button>
+            <a href="{{asset("signup")}}" class="signup">SignUp</a>
+            <a href="{{asset("login")}}" class="login">Login</a>
         </span>
         @endguest
 
         @auth
           <div class="left-side">
-            <a href="/blog/">
+            <a href="#">
               <span class="logo"> e<span>B</span>log </span>
             </a>
             <button id="create-post">Create Post</button>
-            <a href="/blog/pages/posts/myposts.php"><button id="create-post">My posts</button></a>
+            <a href="#"><button id="create-post">My posts</button></a>
           </div>
           <span>
               <span style="color: #fff; padding: 0 15px">Hello User</span>
-              <a href="/blog/control/auth/logout.php" class="logout">Logout</a>
+              <a href="#" class="logout">Logout</a>
           </span>
         @endauth
       </div>  
@@ -69,13 +70,14 @@
         <button class="close-btn" id="create-close-btn">&times;</button>
       </div>
       <div class="create-modal modal-body">
-        <form action="/blog/control/posts/post.php" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST">
           <!-- title -->
           <label for="title">
             Title
             <span style="color: red">*</span>
           </label>
           <input
+            class="equal-width"
             type="text"
             id="title"
             placeholder="type the post title.."
@@ -83,16 +85,23 @@
           />
           <!-- image -->
           <label for="image">
-            Image link
-            <span style="color: red">*</span>
-          </label>
-          <input type="file"  name="image" />
+              Image
+              <span style="color: red">*</span>
+            </label>
+            <input
+              class="equal-width"
+              type="text"
+              id="image"
+              placeholder="type the post img number.."
+              name="image"
+            />
           <!-- body  -->
           <label for="body">
             Body
             <span style="color: red">*</span>
           </label>
           <textarea
+            class="equal-width"
             type="text"
             id="text-body"
             placeholder="type the post body.."
@@ -100,6 +109,7 @@
           ></textarea>
           <!-- buttons -->
           <input
+            class="equal-width"
             type="submit"
             value="Create"
             id="submit-button"
