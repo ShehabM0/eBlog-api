@@ -25,7 +25,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
+     * Won't be included on response
      * @var array<int, string>
      */
     protected $hidden = [
@@ -48,5 +48,12 @@ class User extends Authenticatable
         // hasMany refers to one-to-many relationship, i.e., each user has many posts
         // class, FK, PK
         return $this->hasMany(Post::class, "user_id", "id");
+    }
+
+    // joins user and comment
+    public function comments() {
+        // hasMany refers to one-to-many relationship, i.e., each user has one or comment more
+        // class, FK, PK
+        return $this->hasMany(Comment::class, "user_id", "id");
     }
 }
