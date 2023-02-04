@@ -65,10 +65,11 @@ function inactiveModal(modal) {
 const alert = document.querySelector('.alert-msg')
 if(alert)
 {
-  alert.addEventListener('click', () => {
+  const alert_CloseButton = document.getElementById('x-btn')
+  alert_CloseButton.addEventListener('click', () => {
     alert.style.display = 'none'
   })
   setTimeout(() => {
     alert.style.display = 'none'
-  }, 5000)
+  }, 10000) // 10s
 }
