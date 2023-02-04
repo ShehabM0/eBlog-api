@@ -121,7 +121,14 @@
     </div>
 
     <!-- page alerts   -->
-      <div class="alert-msg">
-        <button class="close-btn">&times;</button>
-        <p>An alert message!</p>
-      </div>
+    @if($errors->any() || session("message"))
+    <div class="alert-msg">
+      <button id="x-btn" class="close-btn">&times;</button>
+        <div>
+          <p>{{session("message")}}</p>
+          @foreach($errors->all() as $error)
+              <p>-{{$error}}</p>
+          @endforeach
+        </div>
+    </div>
+    @endif
