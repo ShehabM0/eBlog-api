@@ -73,3 +73,9 @@ if(alert)
     alert.style.display = 'none'
   }, 10000) // 10s
 }
+
+// logut form submission
+function submitLogoutForm() {
+  const logoutForm = document.getElementById('logoutFormSubmit')
+  logoutForm.submit()
+}

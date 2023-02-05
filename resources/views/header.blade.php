@@ -36,13 +36,12 @@
     <div class="header">
       <div class="nav-container">
         @guest
-        <a href="/blog/">
+        <a href="{{asset("/")}}">
           <span class="logo">
               e<span>B</span>log
           </span>
         </a>
         <span>
-            <button id="create-post">Create Post</button>
             <a href="{{asset("signup")}}" class="signup">SignUp</a>
             <a href="{{asset("login")}}" class="login">Login</a>
         </span>
@@ -50,15 +49,16 @@
 
         @auth
           <div class="left-side">
-            <a href="#">
+            <a href="{{asset("/")}}">
               <span class="logo"> e<span>B</span>log </span>
             </a>
             <button id="create-post">Create Post</button>
             <a href="#"><button id="create-post">My posts</button></a>
           </div>
           <span>
-              <span style="color: #fff; padding: 0 15px">Hello User</span>
-              <a href="#" class="logout">Logout</a>
+            <form action="/logout" method="POST" id="logoutFormSubmit">@csrf</form>
+            <span style="color: #fff; padding: 0 15px">Hello {{Auth::user()["name"]}}</span>
+            <a href="#" class="logout" onclick="submitLogoutForm()">Logout</a>
           </span>
         @endauth
       </div>  
