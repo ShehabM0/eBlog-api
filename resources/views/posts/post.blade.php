@@ -21,6 +21,7 @@
         </div>
 
       <!-- post buttons  -->
+      @if(Auth::id() == $passedPost->user_id)
         <div class="buttons">
             <div class="buttons-container">
             <button class="Edit" id="edit-post">Edit</button>
@@ -32,6 +33,7 @@
                 </form>
             </div>
         </div>
+      @endif
 
       <!-- edit post window -->
       <div class="edit-modal modal-container">
@@ -40,7 +42,9 @@
         </div>
         <div class="edit-modal modal-body">
           <!-- edit post form -->
-          <form action="#" method="POST">
+          <form action="/post/edit" method="POST" enctype="multipart/form-data">
+            @method("PUT")
+            @csrf
             <!-- title -->
             <label for="title">
               Title 
@@ -49,9 +53,8 @@
               class="equal-width"
               type="text"
               id="title"
-              placeholder="type the post title.."
               name="title"
-              value="title"
+              value="{{$passedPost->title}}"
             />
             <!-- image -->
             <label for="image">
@@ -59,11 +62,9 @@
             </label>
             <input
               class="equal-width"
-              type="text"
+              type="file"
               id="image"
-              placeholder="type the post img number.."
               name="image"
-              value="img"
             />
             <!-- body  -->
             <label for="body">
@@ -73,9 +74,8 @@
               class="equal-width"
               type="text"
               id="body"
-              placeholder="type the post body.."
               name="body"
-            > body </textarea>
+            > {{$passedPost->body}} </textarea>
             <!-- post id that will be used to update the post (post identifier) -->
             <input type="hidden" name="post_id" value="{{$passedPost->id}}">
             <!-- buttons -->
