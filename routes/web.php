@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/signup', [AuthController::class, "signupPage"]);
-Route::post('/signup', [AuthController::class, "signup"]);
-
 Route::get('/login', [AuthController::class, "loginPage"]);
+
+Route::post('/signup', [AuthController::class, "signup"]);
+Route::post('/logout', [AuthController::class, "logout"]);
+Route::post('/login', [AuthController::class, "login"]);
 
 Route::get('/', function () {
     return view('homepage');
