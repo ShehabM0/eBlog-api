@@ -1,24 +1,23 @@
         @extends('header')
         <!-- page background  -->
         <div class="img-bg"></div>
-
         <!-- page post  -->
         <div class="img-container">
             <div class="img">
-            <img src="{{asset("img/12.jpg")}}" alt="" />
+            <img src="{{asset("uploads/$passedPost->image")}}" alt="" />
             </div>
         </div>
 
         <div class="post-title">
-            <h3>Temporary Title</h3>
+            <h3>{{$passedPost->title}}</h3>
             <div class="user">
             <img src="{{asset("img/bx-user-circle.svg")}}" alt="" />
-            <p>Shehab Mohamed</p>
+            <p>{{$passedPost->user["name"]}}</p>
             </div>
         </div>
 
         <div class="post-body">
-            <p>Temporary Post Body</p>
+            <p>{{$passedPost->body}}</p>
         </div>
 
       <!-- post buttons  -->
@@ -78,7 +77,7 @@
               name="body"
             > body </textarea>
             <!-- post id that will be used to update the post (post identifier) -->
-            <input type="hidden" name="post_id" value="1">
+            <input type="hidden" name="post_id" value="{{$passedPost->id}}">
             <!-- buttons -->
             <input
               class="equal-width"
