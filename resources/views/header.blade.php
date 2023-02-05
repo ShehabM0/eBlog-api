@@ -70,7 +70,8 @@
         <button class="close-btn" id="create-close-btn">&times;</button>
       </div>
       <div class="create-modal modal-body">
-        <form action="#" method="POST">
+        <form action="post/create" method="POST" enctype="multipart/form-data">
+          @csrf
           <!-- title -->
           <label for="title">
             Title
@@ -90,7 +91,7 @@
             </label>
             <input
               class="equal-width"
-              type="text"
+              type="file"
               id="image"
               placeholder="type the post img number.."
               name="image"
