@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,9 @@ Route::get('/login', [AuthController::class, "loginPage"]);
 Route::post('/signup', [AuthController::class, "signup"]);
 Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/login', [AuthController::class, "login"]);
+
+Route::post('/post/create', [PostController::class, "create"]);
+Route::get('/post/{id}', [PostController::class, "show"]);
 
 Route::get('/', function () {
     return view('homepage');
