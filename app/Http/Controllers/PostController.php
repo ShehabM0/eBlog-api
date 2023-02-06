@@ -16,8 +16,20 @@ class PostController extends Controller
         $this->middleware("auth")->except(['show', 'homepage']);
     }
 
-    public function homepage() {
+    public function homepage(Request $req) {
         $posts = Post::all();
+        if($req->has("search_keyword"))
+        {
+            $pattern = $req->get("search_keyword");
+
+            // searching for matched (username || title || body)
+            $matched_posts = Post::whereHas("User", fn($query) => $query->where("name", "LIKE", "%$pattern%"))->
+            orWhere("title", "LIKE", "%$pattern%")->
+            orWhere("body", "LIKE", "%$pattern%")->
+            get();
+
+            $posts = $matched_posts;
+        }
         return view('homepage')->with("posts", $posts);
     }
 
