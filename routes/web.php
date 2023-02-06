@@ -28,4 +28,5 @@ Route::delete('/post/delete', [PostController::class, "delete"]);
 Route::put('/post/edit', [PostController::class, "edit"]);
 Route::get('/post/{id}', [PostController::class, "show"]);
 
+Route::get('/myposts', [PostController::class, "userPosts"]);
 Route::get('/', [PostController::class, "homepage"]);
