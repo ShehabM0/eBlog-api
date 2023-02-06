@@ -1,4 +1,4 @@
-    @extends('header')
+    @include('header')
     <div class="middle">
         <div class="text-container">
           <div class="hidden">
@@ -7,19 +7,20 @@
           </div>
         </div>
     </div>
-
     <div class="post-container">
-      <a href="#" id="post-link">
-        <div class="post">
-          <img src="{{asset("img/12.jpg")}}" alt="">
-          <h3>Temporary Post Title</h3>
-          <p>Temporary Post Body</p>
-          <div class="user">
-            <img src="{{asset("img/bx-user-circle.svg")}}" alt="">
-            <p>Shehab Mohamed</p>
+      @foreach($posts as $post)
+        <a href="/post/{{$post->id}}" id="post-link">
+          <div class="post">
+            <img src="{{asset("uploads/$post->image")}}" alt="">
+            <h3>{{$post->title}}</h3>
+            <p>{{$post->title}}</p>
+            <div class="user">
+              <img src="{{asset("img/bx-user-circle.svg")}}" alt="">
+              <p>{{$post->user["name"]}}</p>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      @endforeach
     </div>
 
     <!-- create post window background -->
