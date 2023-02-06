@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
@@ -13,6 +14,11 @@ class PostController extends Controller
     {
         // in case not logged-in user trying to create or edit (unauthenticated)
         $this->middleware("auth")->except(['show']);
+    }
+
+    public function homepage() {
+        $posts = Post::all();
+        return view('homepage')->with("posts", $posts);
     }
 
     public function show(int $post_id) {
@@ -45,9 +51,10 @@ class PostController extends Controller
         $post_exist = Post::find($req->post_id);
         if(!$post_exist)
             return redirect("/")->with("message", "The post you are trying to access doesn't exist!");
-        // in case user changed post_id input form to another post id he don't own
+        // in case user changed post_id input form to another post id he doesn't own
         if($post_exist->user_id != Auth::id())
             return abort(403); // Forbidden
+        
         $post = $req->validate([
             'title' => 'required|min:3|max:30',
             'image' => 'mimes:jpg,png,jpeg|max:2048',
@@ -69,5 +76,16 @@ class PostController extends Controller
             'updated_at' => now()
         ]);
         return redirect('post/'.$req->post_id)->with("message", "Post updated successfully.");
+    }
+
+    public function delete(Request $req) {
+        $post = Post::find($req->post_id);
+        if(!$post)
+            return redirect("/")->with("message", "The post you are trying to access doesn't exist!");
+        // in case user changed post_id input form to another post id he doesn't own
+        if($post->user_id != Auth::id())
+            return abort(403); // Forbidden
+        $post->delete();
+        return redirect('/')->with("message", "Post deleted successfully.");
     }
 }
