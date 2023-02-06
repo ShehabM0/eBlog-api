@@ -13,7 +13,7 @@ class PostController extends Controller
     public function __construct()
     {
         // in case not logged-in user trying to create or edit (unauthenticated)
-        $this->middleware("auth")->except(['show']);
+        $this->middleware("auth")->except(['show', 'homepage']);
     }
 
     public function homepage() {
@@ -26,6 +26,14 @@ class PostController extends Controller
         return (!$post) ? 
         redirect("/")->with("message", "The post you are trying to access doesn't exist!") : 
         view("posts.post")->with("passedPost", $post);
+    }
+
+    public function userPosts() {
+        // no need to check if there is a current logged-in user
+        // as the middleware does
+        $user_id = Auth::id();
+        $posts = Post::where('user_id', $user_id)->get();
+        return view('posts.myposts')->with("posts", $posts);
     }
 
     public function create(Request $req) {
