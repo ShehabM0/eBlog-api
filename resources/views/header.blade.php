@@ -36,17 +36,21 @@
     <div class="header">
       <div class="nav-container">
         @guest
-        <a href="{{asset("/")}}">
-          <span class="logo">
-              e<span>B</span>log
-          </span>
-        </a>
-        <span>
-            <a href="{{asset("signup")}}" class="signup">SignUp</a>
-            <a href="{{asset("login")}}" class="login">Login</a>
-        </span>
+          <a href="{{asset("/")}}">
+            <span class="logo">
+                e<span>B</span>log
+            </span>
+          </a>
+          <div class="search-bar">
+            <button type="submit"><img src="{{asset("img/bx-search.svg")}}" alt="" /> </button>
+            <input type="text" name="search_keyword" placeholder="search" form="search-form">
+            <form action="/" method="get" id="search-form"></form>
+          </div>
+          <div>
+              <a href="{{asset("signup")}}" class="signup">SignUp</a>
+              <a href="{{asset("login")}}" class="login">Login</a>
+          </div>
         @endguest
-
         @auth
           <div class="left-side">
             <a href="{{asset("/")}}">
@@ -55,11 +59,16 @@
             <button id="create-post">Create Post</button>
             <a href="/myposts"><button id="create-post">My posts</button></a>
           </div>
-          <span>
+          <div class="search-bar">
+            <button type="submit"><img src="{{asset("img/bx-search.svg")}}" alt="" /> </button>
+            <input type="text" name="search_keyword" placeholder="search" form="search-form">
+            <form action="/" method="get" id="search-form"></form>
+          </div>
+          <div>
             <form action="/logout" method="POST" id="logoutFormSubmit">@csrf</form>
             <span style="color: #fff; padding: 0 15px">Hello {{Auth::user()["name"]}}</span>
             <a href="#" class="logout" onclick="submitLogoutForm()">Logout</a>
-          </span>
+          </div>
         @endauth
       </div>  
     </div>  

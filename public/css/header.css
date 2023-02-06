@@ -54,7 +54,32 @@ img {
     color: var(--bv);
 }
 
-.header .nav-container span:nth-child(2) .login, .signup, .logout {
+.header .nav-container .search-bar button {
+    padding-top: 8px;
+    background-color: hsl(252, 30%, 95%);
+    border: none;
+    pointer-events: none;
+}
+
+.header .nav-container .search-bar input {
+    background-color: hsl(252, 30%, 95%);
+    border: none;
+    outline: none;
+    padding: 0 5px;
+    width: 350px;
+}
+
+.header .nav-container .search-bar {
+    background-color: hsl(252, 30%, 95%);
+    padding: 8px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+}
+
+.header .nav-container .login, .signup, .logout {
     color: var(--wht);
     padding: 5px 10px;
     border: 1.5px solid;
