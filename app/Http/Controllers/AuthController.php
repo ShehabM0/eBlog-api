@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function signupPage() {
+        if(Auth::user()) Auth::logout();
         return view("auth.signup");
     }
 
     public function loginPage() {
+        if(Auth::user()) Auth::logout();
         return view("auth.login");
     }
 
