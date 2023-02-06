@@ -1,21 +1,25 @@
-        @extends('header')
+        @include('header')
         <!-- loading user posts -->
         <div class="mypost-container">
-            <a href="#" id="post-link">
-                <div class="mypost">
-                    <img src="{{asset("img/10.jpg")}}" alt="">
-                    <h3>Temporary Title</h3>
-                    <p>Temporary Post Body</p>
-                    <div class="post-user">
-                        <img src="{{asset("img/bx-user-circle.svg")}}" alt="">
-                        <p>Shehab Mohamed</p>
+            @foreach($posts as $post)
+                <a href="/post/{{$post->id}}" id="post-link">
+                    <div class="mypost">
+                        <img src="{{asset("uploads/$post->image")}}" alt="">
+                        <h3>{{$post->title}}</h3>
+                        <p>{{$post->body}}</p>
+                        <div class="post-user">
+                            <img src="{{asset("img/bx-user-circle.svg")}}" alt="">
+                            <p>{{$post->user["name"]}}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
 
         <!-- user has no posts -->
-        <p id="no-post">You don't have any posts yet.</p>
+        @if(count($posts) == 0)
+            <p id="no-post">You don't have any posts yet.</p>
+        @endif
          
         <!-- create-post window overlay -->
         <div class="create-modal overlay"></div>
