@@ -27,6 +27,13 @@
     font-weight: 400;
 }
 
+.no-search {
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
 .hidden {
     opacity: 0;
     transition: 1.8s;

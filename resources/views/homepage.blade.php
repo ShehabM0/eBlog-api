@@ -23,6 +23,12 @@
       @endforeach
     </div>
 
+    @if(count($posts) == 0)
+    <div>
+      <p class="no-search">No results for your search!</p>
+    </div>
+    @endif
+
     <!-- create post window background -->
     <div class="create-modal overlay"></div>
 
