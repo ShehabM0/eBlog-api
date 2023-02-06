@@ -1,4 +1,4 @@
-        @extends('header')
+        @include('header')
         <!-- page background  -->
         <div class="img-bg"></div>
         <!-- page post  -->
@@ -25,11 +25,12 @@
         <div class="buttons">
             <div class="buttons-container">
             <button class="Edit" id="edit-post">Edit</button>
-            <button form="fname" type="submit" class="Delete" name="post-delete-form" value="DELETE">Delete</button>
+            <button form="delete-form" type="submit" class="Delete" name="post-delete-form" value="DELETE">Delete</button>
                 <!-- delete post form -->
-                <form action="#" method="POST" id="fname">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="post_id" value="1">
+                <form action="/post/delete" method="POST" id="delete-form">
+                  @method("DELETE")
+                  @csrf
+                  <input type="hidden" name="post_id" value="{{$passedPost->id}}">
                 </form>
             </div>
         </div>
@@ -92,7 +93,7 @@
       </div>
 
     <div class="create-modal overlay"></div> 
-    <div class="edit-modal overlay"></div> 
+    <div class="edit-modal overlay"></div>
 
   </body>
 </html>
