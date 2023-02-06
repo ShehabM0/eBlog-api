@@ -1,4 +1,4 @@
-    @extends('header')
+    @include('header')
       <div class="container">
         <div class="auth-img-container">
           <div class="img">
