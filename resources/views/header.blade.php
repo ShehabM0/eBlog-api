@@ -53,7 +53,7 @@
               <span class="logo"> e<span>B</span>log </span>
             </a>
             <button id="create-post">Create Post</button>
-            <a href="#"><button id="create-post">My posts</button></a>
+            <a href="/myposts"><button id="create-post">My posts</button></a>
           </div>
           <span>
             <form action="/logout" method="POST" id="logoutFormSubmit">@csrf</form>
