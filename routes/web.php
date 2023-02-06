@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,8 @@ Route::post('/logout', [AuthController::class, "logout"]);
 Route::post('/login', [AuthController::class, "login"]);
 
 Route::post('/post/create', [PostController::class, "create"]);
+Route::delete('/post/delete', [PostController::class, "delete"]);
 Route::put('/post/edit', [PostController::class, "edit"]);
 Route::get('/post/{id}', [PostController::class, "show"]);
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [PostController::class, "homepage"]);
