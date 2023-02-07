@@ -134,7 +134,8 @@ button {
 }
 
 .comments-category .comments-container .comments-section-name,
-.comments-category .comments-container .comment .comment-user .ls{
+.comments-category .comments-container .comment .comment-user .ls,
+.comments-category .comments-container .comment .comment-user .rs{
     display: flex;
 }
 
@@ -148,7 +149,13 @@ button {
     padding: 0 20px;
 }
 
-.comments-category .comments-container .comment .comment-user .rs :hover {
+.comments-category .comments-container .comment .comment-user .rs button {
+    margin: 0 15px;
+    background: none;
+    border: none;
+}
+
+.comments-category .comments-container .comment .comment-user .rs a:hover {
     color: red;
 }
 
@@ -177,7 +184,8 @@ button {
     padding: 10px;
 }
 
-.comments-category .comments-container .comment-form form textarea{
+.comments-category .comments-container .create-comment-form form textarea,
+.comments-category .comments-container .edit-comment-form form textarea{
     width: 100%;
     min-height: 150px;
     resize: vertical;
@@ -186,7 +194,16 @@ button {
     margin-bottom: 20px;
 }
 
-.comments-category .comments-container .comment-form form input{
+.comments-category .comments-container .edit-comment-form {
+    display: none;
+}
+
+.comments-category .comments-container .edit-comment-form.active{
+    display: block;
+}
+
+.comments-category .comments-container .create-comment-form form input,
+.comments-category .comments-container .edit-comment-form form input{
     background-color: #f0f0f0;   
     border: 2px solid var(--blk1);
     cursor: pointer;
