@@ -21,7 +21,7 @@
 
 .post-container .post {
     background-color: var(--wht);
-    border-radius: 5px;
+    border-radius: 15px 15px 0px 0px;
     height: 400px;
     width: 350px;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
