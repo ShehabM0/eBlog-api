@@ -46,74 +46,52 @@
             </div>
 
             <!-- post has no comments -->
+            @if(count($passedPost->comments) == 0)
             <div class="no-comments">
               <h3>Be the first to leave a comment</h3>
             </div>
-            
-            <div class="comment">
-              <div class="comment-user">
-                <div class="ls"">
-                  <img src="{{asset("img/bx-user.svg")}}" alt="">
-                  <h4>Shehab Mohamed</h4>
-                </div>
-                <div class="rs">
-                  <form action="/comment/delete" method="POST">
-                    <a href="#"> Delete </a>
-                  </form>
-                </div>
-              </div>
-              <div class="comment-text">
-                <p>Lorem Ipsum is simply dummy text of</p>
-              </div>
-            </div>
+            @endif
 
+            @foreach($passedPost->comments as $postMessage)
             <div class="comment">
               <div class="comment-user">
                 <div class="ls"">
                   <img src="{{asset("img/bx-user.svg")}}" alt="">
-                  <h4>Shehab Mohamed</h4>
+                  <h4>{{App\Models\User::find($postMessage->user_id)->name}}</h4>
                 </div>
                 <div class="rs">
+                  @if(Auth::id() === $postMessage->user_id)
                   <form action="/comment/delete" method="POST">
                     <a href="#"> Delete </a>
                   </form>
+                  @endif
                 </div>
               </div>
               <div class="comment-text">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                <p>{{$postMessage->comment}}</p>
               </div>
             </div>
-
-            <div class="comment">
-              <div class="comment-user">
-                <div class="ls"">
-                  <img src="{{asset("img/bx-user.svg")}}" alt="">
-                  <h4>Shehab Mohamed</h4>
-                </div>
-                <div class="rs">
-                  <form action="/comment/delete" method="POST">
-                    <a href="#"> Delete </a>
-                  </form>
-                </div>
-              </div>
-              <div class="comment-text">
-                <p>Where can I get some?</p>
-              </div>
-            </div>
+            @endforeach
             
             <!-- login to leave a comment -->
+            @guest
             <div class="login-comment">
               <a href="/login">LogIn&nbsp;</a>
               <h3>to Comment</h3>
             </div>
+            @endguest
+
             <!-- add comment form section -->
+            @auth
             <div class="comment-form">
-              <form action="/comment/delete" method="POST">
-                <textarea name="text" placeholder="What are your thoughts"></textarea>
+              <form action="/comment/create" method="POST">
+                @csrf
+                <textarea name="comment" placeholder="What are your thoughts"></textarea>
                 <input type="submit" value="Comment">
+                <input type="hidden" name="post_id" value="{{$passedPost->id}}">
               </form>
             </div>
+            @endauth
             
           </div>
           <!-- Categories section -->
@@ -123,8 +101,8 @@
               <!-- post has no categories -->
               <h3>No categories available<br> for this post</h3>
               <!-- categories -->
-              <span>category1</span>
-              <span>category1</span>              
+              <!-- <span>category1</span>
+              <span>category1</span> -->
             </div>
           </div>
         </div>
