@@ -188,7 +188,8 @@ button {
 
 .comments-category .comments-container .comment-form form input{
     background-color: #f0f0f0;   
-    border: 2px solid var(--blk1); 
+    border: 2px solid var(--blk1);
+    cursor: pointer;
 }
 
 .comments-category .comments-container .login-comment {
