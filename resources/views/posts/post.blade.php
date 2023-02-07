@@ -52,26 +52,31 @@
             </div>
             @endif
 
-            @foreach($passedPost->comments as $postMessage)
+            @foreach($passedPost->comments as $postComment)
             <div class="comment">
               <div class="comment-user">
+                <!-- user info -->
                 <div class="ls"">
                   <img src="{{asset("img/bx-user.svg")}}" alt="">
-                  <h4>{{App\Models\User::find($postMessage->user_id)->name}}</h4>
+                  <h4>{{App\Models\User::find($postComment->user_id)->name}}</h4>
                 </div>
+                <!-- edit/delete comment -->
                 <div class="rs">
-                  @if(Auth::id() === $postMessage->user_id)
+                  @if(Auth::id() === $postComment->user_id)
+                  <!-- edit comment button -->
+                  <button href="#" onclick="editCommentForm('{{$postComment->comment}}', '{{$postComment->id}}')"> Edit </button>
+                  <!-- delete comment form -->
                   <form action="/comment/delete" method="POST" id="deleteCommFormSubmit">
                     @method('DELETE')
                     @csrf
-                    <input type="hidden" name="comment_id" value="{{$postMessage->id}}">
+                    <input type="hidden" name="comment_id" value="{{$postComment->id}}">
                     <a href="#" onclick="deleteCommentForm()"> Delete </a>
                   </form>
                   @endif
                 </div>
               </div>
               <div class="comment-text">
-                <p>{{$postMessage->comment}}</p>
+                <p>{{$postComment->comment}}</p>
               </div>
             </div>
             @endforeach
@@ -84,9 +89,19 @@
             </div>
             @endguest
 
-            <!-- add comment form section -->
+            <!-- add/edit comment form section -->
             @auth
-            <div class="comment-form">
+            <div class="edit-comment-form" id="editCommentFormDiv">
+              <form action="/comment/edit" method="POST">
+                @method("PUT")
+                @csrf
+                <textarea id="edit-txt-area" name="comment"></textarea>
+                <input type="submit" value="Edit">
+                <input type="hidden" id="comment_id" name="comment_id" value="">
+                <input type="hidden" name="post_id" value="{{$passedPost->id}}">
+              </form>
+            </div>
+            <div class="create-comment-form" id="creatCommentFormDiv">
               <form action="/comment/create" method="POST">
                 @csrf
                 <textarea name="comment" placeholder="What are your thoughts"></textarea>
