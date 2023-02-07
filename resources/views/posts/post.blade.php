@@ -61,8 +61,11 @@
                 </div>
                 <div class="rs">
                   @if(Auth::id() === $postMessage->user_id)
-                  <form action="/comment/delete" method="POST">
-                    <a href="#"> Delete </a>
+                  <form action="/comment/delete" method="POST" id="deleteCommFormSubmit">
+                    @method('DELETE')
+                    @csrf
+                    <input type="hidden" name="comment_id" value="{{$postMessage->id}}">
+                    <a href="#" onclick="deleteCommentForm()"> Delete </a>
                   </form>
                   @endif
                 </div>
