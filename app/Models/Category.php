@@ -12,6 +12,8 @@ class Category extends Model
     protected $fillable = [
         "category"
     ];
+    
+    public $timestamps = false;
 
     // joins category and post
     public function posts() {
