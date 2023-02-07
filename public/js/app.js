@@ -79,3 +79,9 @@ function submitLogoutForm() {
   const logoutForm = document.getElementById('logoutFormSubmit')
   logoutForm.submit()
 }
+
+// delete-comment form submission
+function deleteCommentForm() {
+  const deletecommentFrom = document.getElementById('deleteCommFormSubmit')
+  deletecommentFrom.submit();
+}
