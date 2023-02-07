@@ -30,6 +30,7 @@ Route::put('/post/edit', [PostController::class, "edit"]);
 Route::get('/post/{id}', [PostController::class, "show"]);
 
 Route::post('/comment/create', [CommentController::class, "create"]);
+Route::delete('/comment/delete', [CommentController::class, "delete"]);
 
 Route::get('/myposts', [PostController::class, "userPosts"]);
 Route::get('/', [PostController::class, "homepage"]);
