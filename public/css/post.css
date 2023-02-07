@@ -116,3 +116,117 @@ button {
 .Delete {
     background-color: rgb(195, 33, 33);
 }
+
+
+.comments-category {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.comments-category .comments-container {
+    padding: 20px;
+}
+
+.comments-category .comments-container .no-comments {
+    margin: 100px 0;
+    text-align: center;
+}
+
+.comments-category .comments-container .comments-section-name,
+.comments-category .comments-container .comment .comment-user .ls{
+    display: flex;
+}
+
+.comments-category .comments-container .comment .comment-user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comments-category .comments-container .comment .comment-user .rs {
+    padding: 0 20px;
+}
+
+.comments-category .comments-container .comment .comment-user .rs :hover {
+    color: red;
+}
+
+.comments-category .comments-section-name h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.comments-category .comments-container .comment {
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 25px 20px -20px;
+    margin: 30px 0;
+    padding: 15px;
+}
+
+.comments-category .comments-container .comment .comment-user h4 {
+    padding: 0 10px;
+}
+
+.comments-category .comments-container img {
+    margin-top: -5px;
+    width: 35px;
+    height: 35px;
+}
+
+.comments-category .comments-container .comment .comment-text {
+    padding: 10px;
+}
+
+.comments-category .comments-container .comment-form form textarea{
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    max-height: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.comments-category .comments-container .comment-form form input{
+    background-color: #f0f0f0;   
+    border: 2px solid var(--blk1); 
+}
+
+.comments-category .comments-container .login-comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comments-category .comments-container .login-comment a{
+    font-weight: 500;
+}
+
+.comments-category .category-container .categories-section-name {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.comments-category .category-container {
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    inline-size: 30%;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.comments-category .category-container .categories {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comments-category .category-container .categories span {
+    margin: 0 10px;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 2px;
+}
