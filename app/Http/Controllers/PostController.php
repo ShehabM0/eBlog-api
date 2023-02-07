@@ -50,7 +50,7 @@ class PostController extends Controller
 
     public function create(Request $req) {
         $post = $req->validate([
-            'title' => 'required|min:3|max:30',
+            'title' => 'required|min:3|max:50',
             'image' => 'required|mimes:jpg,png,jpeg|max:2048',
             'body' => 'required'
         ],[
@@ -76,7 +76,7 @@ class PostController extends Controller
             return abort(403); // Forbidden
         
         $post = $req->validate([
-            'title' => 'required|min:3|max:30',
+            'title' => 'required|min:3|max:50',
             'image' => 'mimes:jpg,png,jpeg|max:2048',
             'body' => 'required'
         ],[
