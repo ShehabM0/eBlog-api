@@ -42,4 +42,22 @@ class CommentController extends Controller
         $comment_exist->delete();
         return redirect('/post/' . $comment_exist->post_id)->with("message", "Message deleted successfully.");
     }
+
+    public function edit(Request $req) {
+        $comment = $req->validate([
+            'comment' => 'required|max:255',
+            'comment_id' => 'required|numeric',
+            'post_id' => 'required|numeric'
+        ]);
+        $comment_exist = Comment::find($req->comment_id);
+        if(!$comment_exist)
+            return redirect("/")->with("message", "The post you are trying to access doesn't exist!"); 
+        if($comment_exist->user_id != Auth::id())
+            return abort(403); // Forbidden
+        $comment_exist->update([
+            'comment' => $req->comment,
+            'updated_at' => now()
+        ]);
+        return redirect('post/'.$req->post_id)->with("message", "Comment updated successfully.");
+    }
 }
