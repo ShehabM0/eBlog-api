@@ -83,5 +83,27 @@ function submitLogoutForm() {
 // delete-comment form submission
 function deleteCommentForm() {
   const deletecommentFrom = document.getElementById('deleteCommFormSubmit')
-  deletecommentFrom.submit();
+  deletecommentFrom.submit()
+}
+
+// commentTXT is the comment content that the user want to edit
+// commentID is comment identifier 
+function editCommentForm(commentTXT, commentID) {
+  // disappearing create-comment-form
+  const creatCommentFormDiv = document.getElementById('creatCommentFormDiv')
+  creatCommentFormDiv.style.display = 'none';
+  // appearing edit-comment-form
+  const editCommentFormDiv = document.getElementById('editCommentFormDiv')
+  editCommentFormDiv.classList.add('active');
+
+  // getting edit-form textArea input field
+  const edit_textArea = document.getElementById('edit-txt-area')
+  // getting edit-form commentId input field
+  const message_id = document.getElementById("comment_id")
+  // inserting passed function's values into edit-form input fields that we got
+  message_id.value = commentID;
+  edit_textArea.value = commentTXT
+  // scrolling to edit-form section
+  edit_textArea.scrollIntoView()
+  edit_textArea.focus()
 }
