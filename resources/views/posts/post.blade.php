@@ -101,7 +101,7 @@
                 <input type="hidden" name="post_id" value="{{$passedPost->id}}">
               </form>
             </div>
-            <div class="create-comment-form" id="creatCommentFormDiv">
+            <div class="create-comment-form" id="createCommentFormDiv">
               <form action="/comment/create" method="POST">
                 @csrf
                 <textarea name="comment" placeholder="What are your thoughts"></textarea>
