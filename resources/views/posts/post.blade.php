@@ -117,10 +117,13 @@
             <h3 class="categories-section-name">Categories</h3>
             <div class="categories">
               <!-- post has no categories -->
+              @if(count($passedPost->categories) == 0)
               <h3>No categories available<br> for this post</h3>
+              @endif
               <!-- categories -->
-              <!-- <span>category1</span>
-              <span>category1</span> -->
+              @foreach($passedPost->categories as $postCategories)
+              <span>{{$postCategories->category}}</span>
+              @endforeach
             </div>
           </div>
         </div>
