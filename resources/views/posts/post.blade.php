@@ -1,9 +1,9 @@
 @extends('header')
 @section('pageTitle', 'Post')
 @section('post-content')
-    <!-- page background  -->
+    {{-- page background --}}
     <div class="img-bg"></div>
-    <!-- page post  -->
+    {{-- page post --}}
     <div class="img-container">
         <div class="img">
             <img src="{{ asset("uploads/$passedPost->image") }}" alt="" />
@@ -22,14 +22,14 @@
         <p>{{ $passedPost->body }}</p>
     </div>
 
-    <!-- post buttons  -->
+    {{-- post buttons --}}
     @if (Auth::id() == $passedPost->user_id)
         <div class="buttons">
             <div class="buttons-container">
                 <button class="Edit" id="edit-post">Edit</button>
                 <button form="delete-form" type="submit" class="Delete" name="post-delete-form"
                     value="DELETE">Delete</button>
-                <!-- delete post form -->
+                {{-- delete post form --}}
                 <form action="/post/delete" method="POST" id="delete-form">
                     @method('DELETE')
                     @csrf
@@ -39,7 +39,7 @@
         </div>
     @endif
 
-    <!-- Comments and Categories Section -->
+    {{-- Comments and Categories Section --}}
     <div class="comments-category">
         <div class="comments-container">
 
@@ -48,7 +48,7 @@
                 <img src="{{ asset('img/bx-message-square.svg') }}" alt="">
             </div>
 
-            <!-- post has no comments -->
+            {{-- post has no comments --}}
             @if (count($passedPost->comments) == 0)
                 <div class="no-comments">
                     <h3>Be the first to leave a comment</h3>
@@ -58,27 +58,27 @@
             @foreach ($passedPost->comments as $postComment)
                 <div class="comment">
                     <div class="comment-user">
-                        <!-- user info -->
+                        {{-- user info --}}
                         <div class="ls"">
                             <img src=" {{ asset('img/bx-user.svg') }}" alt="">
                             <h4>{{ App\Models\User::find($postComment->user_id)->name }}</h4>
                         </div>
-                        <!-- edit/delete comment -->
-                        <div class="rs">
-                            @if (Auth::id() === $postComment->user_id)
-                                <!-- edit comment button -->
+                        {{-- edit/delete comment --}}
+                        @if (Auth::id() === $postComment->user_id)
+                            <div class="rs">
+                                {{-- edit-comment button --}}
                                 <button href="#"
                                     onclick="editCommentForm('{{ $postComment->comment }}', '{{ $postComment->id }}')">
                                     Edit </button>
-                                <!-- delete comment form -->
+                                {{-- delete-comment form --}}
                                 <form action="/comment/delete" method="POST" id="deleteCommFormSubmit">
                                     @method('DELETE')
                                     @csrf
                                     <input type="hidden" name="comment_id" value="{{ $postComment->id }}">
                                     <a href="#" onclick="deleteCommentForm()"> Delete </a>
                                 </form>
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                     <div class="comment-text">
                         <p>{{ $postComment->comment }}</p>
@@ -86,7 +86,7 @@
                 </div>
             @endforeach
 
-            <!-- login to leave a comment -->
+            {{-- login to leave a comment --}}
             @guest
                 <div class="login-comment">
                     <a href="/login">LogIn&nbsp;</a>
@@ -94,7 +94,7 @@
                 </div>
             @endguest
 
-            <!-- add/edit comment form section -->
+            {{-- add/edit comment form section --}}
             @auth
                 <div class="edit-comment-form" id="editCommentFormDiv">
                     <form action="/comment/edit" method="POST">
@@ -118,15 +118,15 @@
         </div>
 
 
-        <!-- Categories section -->
+        {{-- Categories section --}}
         <div class="category-container">
             <h3 class="categories-section-name">Categories</h3>
             <div class="categories">
-                <!-- post has no categories -->
+                {{-- post has no categories --}}
                 @if (count($passedPost->categories) == 0)
                     <h3>No categories available<br> for this post</h3>
                 @endif
-                <!-- categories -->
+                {{-- categories --}}
                 @foreach ($passedPost->categories as $postCategories)
                     <span>{{ $postCategories->category }}</span>
                 @endforeach
@@ -134,34 +134,34 @@
         </div>
     </div>
 
-    <!-- edit post window -->
+    {{-- edit-post window --}}
     <div class="edit-modal modal-container">
         <div class="edit-modal modal-header">
             <button class="close-btn" id="edit-close-btn">&times;</button>
         </div>
         <div class="edit-modal modal-body">
-            <!-- edit post form -->
+            {{-- edit-post form --}}
             <form action="/post/edit" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                <!-- title -->
+                {{-- title --}}
                 <label for="title">
                     Title
                 </label>
                 <input class="equal-width" type="text" id="title" name="title" value="{{ $passedPost->title }}" />
-                <!-- image -->
+                {{-- image --}}
                 <label for="image">
                     Image
                 </label>
                 <input class="equal-width" type="file" id="image" name="image" />
-                <!-- body  -->
+                {{-- body --}}
                 <label for="body">
                     Body
                 </label>
                 <textarea class="equal-width" type="text" id="body" name="body"> {{ $passedPost->body }} </textarea>
-                <!-- post id that will be used to update the post (post identifier) -->
+                {{-- post id that will be used to update the post (post identifier) --}}
                 <input type="hidden" name="post_id" value="{{ $passedPost->id }}">
-                <!-- buttons -->
+                {{-- buttons --}}
                 <input class="equal-width" type="submit" value="Edit" id="submit-button" class="buttons"
                     name="post-update-form" />
             </form>

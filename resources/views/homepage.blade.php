@@ -31,7 +31,7 @@
         </div>
     @endif
 
-    <!-- create post window background -->
+    {{-- create post window background --}}
     <div class="create-modal overlay"></div>
 
 @stop

@@ -8,8 +8,9 @@
             </div>
         </div>
         <div class="form-container">
+            {{-- login form --}}
             <form action="/login" method="POST">
-                <!-- avoid 419 page expired error (token verification failure) -->
+                {{-- avoid 419 page expired error (token verification failure) --}}
                 @csrf
                 <h2>Hi, Welcome Back!</h2>
                 <input type="email" placeholder="Email" required="required" name="email" />

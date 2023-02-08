@@ -1,7 +1,7 @@
 @extends('header')
 @section('pageTitle', 'myPosts')
 @section('myposts-content')
-    <!-- loading user posts -->
+    {{-- user posts --}}
     <div class="mypost-container">
         @foreach ($posts as $post)
             <a href="/post/{{ $post->id }}" id="post-link">
@@ -18,11 +18,11 @@
         @endforeach
     </div>
 
-    <!-- user has no posts -->
+    {{-- user has no posts --}}
     @if (count($posts) == 0)
         <p id="no-post">You don't have any posts yet.</p>
     @endif
 
-    <!-- create-post window overlay -->
+    {{-- create-post window overlay --}}
     <div class="create-modal overlay"></div>
 @stop
