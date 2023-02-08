@@ -22,8 +22,9 @@ class PostController extends Controller
         {
             $pattern = $req->get("search_keyword");
 
-            // searching for matched (username || title || body)
+            // searching for matched (username || category || title || body)
             $matched_posts = Post::whereHas("User", fn($query) => $query->where("name", "LIKE", "%$pattern%"))->
+            orwhereHas("Categories", fn($query) => $query->where("category", "LIKE", "%$pattern%"))->
             orWhere("title", "LIKE", "%$pattern%")->
             orWhere("body", "LIKE", "%$pattern%")->
             get();
